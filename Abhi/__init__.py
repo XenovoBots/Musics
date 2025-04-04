@@ -1,4 +1,4 @@
-from Abhi import app, call, seek_chats, sudo
+from Abhi import seek_chats, sudo
 
 sudo()
 

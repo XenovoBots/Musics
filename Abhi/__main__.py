@@ -1,4 +1,4 @@
-from Abhi.greet import greet
+from Abhi import greet
 
 def main():
     print(greet())

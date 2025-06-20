@@ -26,4 +26,5 @@ async def SearchYt(query: str):
         "url": item.get("url")
     }]
 
-    return search_data, item["url"]
+    song_link = item["url"]
+    return search_data, song_link

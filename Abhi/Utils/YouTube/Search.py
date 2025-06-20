@@ -1,17 +1,14 @@
 import asyncio
-import logging
 from YouTubeMusic.Search import Search
-from database import ensure_indexes, get_cached_search, add_cached_search
+from Abhi.Database import ensure_indexes, get_cached_search, add_cached_search
 
 async def SearchYt(query: str):
     await ensure_indexes()
 
     cached = await get_cached_search(query)
     if cached:
-        logging.info("[SEARCH CACHE HIT]")
         item = cached["result"]
     else:
-        logging.info("[SEARCH CACHE MISS]")
         results = await Search(query, limit=1)
         if not results or not results.get("main_results"):
             raise Exception("No results found.")
@@ -29,5 +26,4 @@ async def SearchYt(query: str):
         "url": item.get("url")
     }]
 
-    song_link = item["url"]
-    return search_data, song_link
+    return search_data, item["url"]

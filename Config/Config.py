@@ -1,4 +1,10 @@
-BOT_TOKEN = "your_bot_token"
-API_ID = 12345678
-API_HASH = "your_api_hash"
-SESSION_STRING = "your_userbot_session_string"
+import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+API_ID = int(os.getenv("API_ID"))
+API_HASH = os.getenv("API_HASH")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+SESSION_STRING = os.getenv("SESSION_STRING")

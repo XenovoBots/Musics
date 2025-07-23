@@ -22,7 +22,7 @@ async def SearchYt(query: str):
         item = results["main_results"][0]
         await add_cached_search(normalized_query, item)
 
-  $  end = time.time()  # End timing
+  #  end = time.time()  # End timing
    # print(f"⏱️ Search Time Taken: {end - start:.2f} seconds")
 
     # Format output

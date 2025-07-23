@@ -32,7 +32,7 @@ async def add_cached_search(query: str, result: dict):
 async def get_cached_stream(url_hash: str):
     return await stream_collection.find_one({"url_hash": url_hash})
 
-async def add_cached_stream(url_hash: str, stream_url: str, video_url: str, path: str):
+async def add_cached_stream(url_hash: str, stream_url: str, video_url: str, path: str = None):
     try:
         await stream_collection.insert_one({
             "url_hash": url_hash,
@@ -42,4 +42,4 @@ async def add_cached_stream(url_hash: str, stream_url: str, video_url: str, path
             "timestamp": datetime.now(timezone.utc)
         })
     except DuplicateKeyError:
-        pass  # Already cached
+        pass

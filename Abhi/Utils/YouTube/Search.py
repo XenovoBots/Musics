@@ -1,3 +1,6 @@
+import asyncio
+from YouTubeMusic.Search import Search
+from Abhi.Database import ensure_indexes, get_cached_search, add_cached_search
 import time
 
 async def SearchYt(query: str):
@@ -33,4 +36,5 @@ async def SearchYt(query: str):
         "url": item.get("url")
     }]
 
-    return search_data, item["url"]
+    song_link = item["url"]
+    return search_data, song_link

@@ -5,7 +5,10 @@ from Abhi.Database import ensure_indexes, get_cached_search, add_cached_search
 async def SearchYt(query: str):
     await ensure_indexes()
 
-    cached = await get_cached_search(query)
+    # Normalize the query to ensure consistent caching
+    normalized_query = query.lower().strip()
+
+    cached = await get_cached_search(normalized_query)
     if cached:
         item = cached["result"]
     else:
@@ -14,7 +17,7 @@ async def SearchYt(query: str):
             raise Exception("No results found.")
 
         item = results["main_results"][0]
-        await add_cached_search(query, item)
+        await add_cached_search(normalized_query, item)
 
     search_data = [{
         "title": item.get("title"),
